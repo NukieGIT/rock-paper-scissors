@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPS</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="result">
+            <h4>First to <span id="winsAmount"></span> wins</h4>
+            <h3 class="h3Scores">Player <span id="pScore">0</span> - <span id="cScore">0</span> Computer</h3>
+        </div>
+        <div class="player">
+            <img src="#" alt="" class="image" id="image1">
+            <p class="imageText"></p>
+        </div>
+        <div class="pc">
+            <img src="#" alt="" class="image" id="image1">
+            <p class="imageText"></p>
+        </div>
+    </div>
+    <div class="button1">
+        <button class="los" id="but1" onclick="los()">Start</button>
+        <p class="losResult" id="winner"></p>
+        <p class="combo"><span id="combo">0</span>x</p>
+    </div>
+    <div class="restart">
+        <h1 class="winnerText unshow">You Won!</h1>
+        <p class="highestComboText">Highest Combo: <span id="highestComboText"></span></p>
+        <button id="restartButton">RESTART</button>
+    </div>
+</body>
+<script src="script.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+</html>
