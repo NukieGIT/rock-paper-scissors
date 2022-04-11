@@ -273,3 +273,4 @@ function updateScore() {
     document.getElementById('cScore').textContent = cScore
     combo.innerText = count
 }
+// yes
