@@ -20,7 +20,7 @@ const loseChance = .66
 const tieChance = 1
 
 winsAmountText.innerText = winsAmount
-
+// handling restart button
 restartButton.addEventListener("click", ()=>{
         pScore = cScore = highestCombo = count = 0
         images[0].src = "#"
@@ -37,11 +37,10 @@ restartButton.addEventListener("click", ()=>{
         restart.classList.add("unshow")
 })
 
-
 function startClick() {
     losButton.innerText = "Next move"
 }
-
+// main
 function los() {
     if (!duringChoice) {
         duringChoice = true
@@ -58,7 +57,7 @@ function los() {
         }
         userChoice()
 
-
+        // check for user input
         function userChoiceKeyPress() {
             return new Promise((resolve) => {
                 document.addEventListener('keydown', onKeyHandler)
@@ -88,7 +87,11 @@ function los() {
                             document.removeEventListener('keydown', onKeyHandler)
                             resolve()
                         }
+
+                        // listen only for needed keys during await
                         if (e.key === "r" || e.key === "p" || e.key === "s") {
+                            
+                            // winning losing and tying conditions
                             let randNum = Math.random()
                             
                             if (r1==0) {
@@ -262,7 +265,7 @@ function los() {
                         }
         }
 
-
+// fix this braces mess ^^^^^^^^^^^^^^^^
 
 }
 
