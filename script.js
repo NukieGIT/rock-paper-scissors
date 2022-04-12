@@ -55,7 +55,7 @@ function los() {
             images[0].src = "#"
             images[1].src = "#"
             imageText[0].innerText = "Awaitng for user input \navailable options:\nrock = r\n paper = p\n scissors = s"
-            imageText[1].innerText = "Awaiting for user input"
+            imageText[1].innerText = "Awaitng for user input \navailable options:\nrock = 1\n paper = 2\n scissors = 3"
             losButton.innerText = "..."
             await userChoiceKeyPress()
         }
@@ -71,25 +71,25 @@ function los() {
                         imageText[0].innerText = null
                         imageText[1].innerText = null
                         images[0].src = imgtab[r1]
-                        startClick()
+                        
                         document.removeEventListener('keydown', onKeyHandler)
-                        resolve()
+                   
                     }else if (e.key === "p") {
                         r1 = 2
                         imageText[0].innerText = null
                         imageText[1].innerText = null
                         images[0].src = imgtab[r1]
-                        startClick()
+                        
                         document.removeEventListener('keydown', onKeyHandler)
-                        resolve()
+                      
                     }else if (e.key === "s") {
                         r1 = 0
                         imageText[0].innerText = null
                         imageText[1].innerText = null
                         images[0].src = imgtab[r1]
-                        startClick()
+                       
                         document.removeEventListener('keydown', onKeyHandler)
-                        resolve()
+                   
                     }
 
                     // listen only for needed keys during await
@@ -97,42 +97,31 @@ function los() {
                         
                         // winning losing and tying conditions
                         let randNum = Math.random()
+                        return new Promise((resolve) => {
+                        document.addEventListener('keydown', onKeyHandler)
+                        function onKeyHandler(f) {
+                            if (f.key === "1") {
+                                r2 = 1
+                                images[1].src = imgtab[r2]
+                                startClick()
+                                document.removeEventListener('keydown', onKeyHandler)
+                                resolve()
+                            }else if (f.key === "2") {
+                                r2 = 2
+                                images[1].src = imgtab[r2]
+                                startClick()
+                                document.removeEventListener('keydown', onKeyHandler)
+                                resolve()
+                            }else if (f.key === "3") {
+                                r2 = 0
+                                images[1].src = imgtab[r2]
+                                startClick()
+                                document.removeEventListener('keydown', onKeyHandler)
+                                resolve()
+                            }
                         
-                        if (r1==0) {
-                            if (randNum < winChance) {
-                                r2 = 2
-                                images[1].src = imgtab[r2]
-                            }else if (randNum < loseChance) {
-                                r2 = 1
-                                images[1].src = imgtab[r2]
-                            }else if(randNum < tieChance){
-                                r2 = 0
-                                images[1].src = imgtab[r2]
-                            }
-                        }else if(r1==1){
-                            if (randNum < winChance) {
-                                r2 = 0
-                                images[1].src = imgtab[r2]
-                            }else if (randNum < loseChance) {
-                                r2 = 2
-                                images[1].src = imgtab[r2]
-                            }else if(randNum < tieChance){
-                                r2 = 1
-                                images[1].src = imgtab[r2]
-                            }
-                        }else if(r1==2){
-                            if (randNum < winChance) {
-                                r2 = 1
-                                images[1].src = imgtab[r2]
-                            }else if (randNum < loseChance) {
-                                r2 = 0
-                                images[1].src = imgtab[r2]
-                            }else if(randNum < tieChance){
-                                r2 = 2
-                                images[1].src = imgtab[r2]
-                            }
-                        }
-
+                    
+                        if (f.key === "1" || f.key === "2" || f.key === "3") {   
                         //winner check
 
                         if (r1 === r2) {
@@ -218,6 +207,7 @@ function los() {
                                 cScore++
                             }
                         }
+                    }
                         updateScore()
                         if (pScore === winsAmount || cScore === winsAmount) {
                             restart.classList.add("delay")
@@ -229,11 +219,17 @@ function los() {
                         }
                         duringChoice = false
                     }
+                    })
+                     }
+                
                 }
-            })
+                
+            }
+            )}
         }
     }
-}
+    
+
 
 
 
