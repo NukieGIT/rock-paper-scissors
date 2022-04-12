@@ -3,6 +3,7 @@ body{
     margin: 0;
     background-color: darkslategray;
     font-family: 'Comfortaa', cursive;
+    overflow-x: hidden;
 }
 .container {
     display: grid;
@@ -14,9 +15,9 @@ body{
       "result result result result"
       "player player pc pc";
     justify-items: center;
-  }
+}
   
-  .result { grid-area: result; text-align: center;}
+  .result { grid-area: result; text-align: center; width: 100vw;}
   
   .player { grid-area: player; width: 200px;}
   
@@ -24,7 +25,7 @@ body{
   
 
 .button1{
-    width: 100%;
+    width: 100vw;
     height: 300px;
 }
 
@@ -36,7 +37,7 @@ body{
 }
 
 .los, .losResult, .combo{
-    width: 100%;
+    width: 100vw;
     height: 50px;
     text-align: center;
 }
@@ -156,4 +157,3 @@ body{
         opacity: 0
     }
 }
-/* yes */
