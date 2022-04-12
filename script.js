@@ -7,7 +7,10 @@ let losButton = document.querySelector(".los")
 let combo = document.getElementById("combo")
 let highestComboText = document.getElementById("highestComboText")
 let winsAmountText = document.getElementById("winsAmount")
+let winsAmountUser = document.querySelector(".winsAmountUser")
 let imageText = document.querySelectorAll(".imageText")
+let settingsIcon = document.querySelector(".settingsIcon")
+let settingsDiv = document.querySelector(".settings")
 let pScore = 0
 let cScore = 0
 let lastMove
@@ -23,6 +26,13 @@ const tieChance = 1
 const winText = "You Win!"
 const loseText = "You Lose!"
 const tieText = "You Tied!"
+
+settingsIcon.addEventListener("click", ()=>{
+    settingsDiv.classList.toggle("show")
+    settingsIcon.classList.toggle("spin")
+    winsAmount = winsAmountUser.value
+    console.log(winsAmountUser.value)
+})
 
 winsAmountText.innerText = winsAmount
 // handling restart button

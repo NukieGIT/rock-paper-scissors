@@ -115,8 +115,88 @@ body{
     border: 2px groove white;
     background-color: darkgray;
 }
+.settingsIconContainer{
+    position: absolute;
+    top: 93vh;
+}
 
+.settingsIcon{
+    height: 60px;
+    transition: all 1s cubic-bezier(.47,-0.94,.58,1.89);
+    /* animation: scaleDown .3s ease-in-out; */
+}
 
+.settingsIcon:hover{
+    /* animation: scaleUp .3s alternate ease-in-out infinite; */
+    transform: scale(1.05);
+}
+
+/* @keyframes scaleUp {
+    from{
+        transform: scale(1);
+    }
+    to{
+        transform: scale(1.05);
+    }
+}
+
+@keyframes scaleDown {
+    from{
+        transform: scale(1.05);
+    }
+    to{
+        transform: scale(1);
+    }
+} */
+
+.settingsIcon.spin{
+    transform: rotate(180deg);
+}
+
+.settings{
+    overflow: hidden;
+    display: flex;
+    /* height: 0; */
+    opacity: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 1);
+    position: fixed;
+    top: 20vh;
+    bottom: 20vh;
+    right: 80vw;
+    left: 0;
+    transform: translateX(-20vw);
+    transition: all 1s ease-in-out;
+}
+
+.settings.show{
+    opacity: 1;
+    transform: translateX(80vw);
+
+}
+
+.settings h2{
+    color: aquamarine;
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    right: 0;
+    bottom: 0;
+}
+
+.winsAmountUser{
+    color: white;
+    background-color: rgb(104, 104, 104);
+    padding: 5px 0px;
+    width: 60px;
+    position: static;
+    text-align: center;
+    display: inline-block;
+    border-radius: 20%;
+    border: none;
+}
 
 .winnerText, .highestComboText{
     color: white;
