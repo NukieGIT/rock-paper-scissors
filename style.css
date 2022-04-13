@@ -3,7 +3,7 @@ body{
     margin: 0;
     background-color: darkslategray;
     font-family: 'Comfortaa', cursive;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 .container {
     display: grid;
@@ -116,6 +116,9 @@ body{
     background-color: darkgray;
 }
 .settingsIconContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     top: 93vh;
 }
@@ -127,8 +130,8 @@ body{
 }
 
 .settingsIcon:hover{
-    /* animation: scaleUp .3s alternate ease-in-out infinite; */
-    transform: scale(1.05);
+    animation: scaleUp .3s alternate ease-in-out infinite;
+    /* transform: scale(1.05); */
 }
 
 /* @keyframes scaleUp {
@@ -162,6 +165,7 @@ body{
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 1);
+    border-radius: 20px 20px 20px 20px;
     position: fixed;
     top: 20vh;
     bottom: 20vh;
@@ -173,8 +177,18 @@ body{
 
 .settings.show{
     opacity: 1;
+    border-radius: 20px 0px 0px 20px;
     transform: translateX(80vw);
 
+}
+
+.applySettings{
+    position: absolute;
+    outline: none;
+    border: 1px solid black;
+    border-radius: 20px;
+    top: 90%;
+    background-color: greenyellow;
 }
 
 .settings h2{

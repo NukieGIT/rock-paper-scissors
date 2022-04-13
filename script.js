@@ -11,6 +11,7 @@ let winsAmountUser = document.querySelector(".winsAmountUser")
 let imageText = document.querySelectorAll(".imageText")
 let settingsIcon = document.querySelector(".settingsIcon")
 let settingsDiv = document.querySelector(".settings")
+let applySettingsButton = document.querySelector(".applySettings")
 let pScore = 0
 let cScore = 0
 let lastMove
@@ -20,21 +21,30 @@ let winsAmount = 10
 let duringChoice = false
 let r1
 let r2
-const winChance = .33
-const loseChance = .66
-const tieChance = 1
+let winChance = .33
+let loseChance = .66
+let tieChance = 1
 const winText = "You Win!"
 const loseText = "You Lose!"
 const tieText = "You Tied!"
 
+winsAmountText.innerText = winsAmountUser.value = winsAmount
+
 settingsIcon.addEventListener("click", ()=>{
     settingsDiv.classList.toggle("show")
     settingsIcon.classList.toggle("spin")
-    winsAmount = winsAmountUser.value
-    console.log(winsAmountUser.value)
 })
 
-winsAmountText.innerText = winsAmount
+applySettingsButton.addEventListener("click", ()=>{
+    winsAmount = parseInt(winsAmountUser.value)
+    winsAmountText.innerText = winsAmount
+})
+
+winsAmountUser.addEventListener("input", ()=>{
+    if (winsAmountUser.value.length > 4) winsAmountUser.value = winsAmountUser.value.slice(0, 4)
+    winsAmountUser.value = Math.trunc(Math.abs(winsAmountUser.value))
+})
+
 // handling restart button
 restartButton.addEventListener("click", ()=>{
         pScore = cScore = highestCombo = count = 0
