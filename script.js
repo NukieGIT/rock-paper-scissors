@@ -38,6 +38,9 @@ settingsIcon.addEventListener("click", ()=>{
 applySettingsButton.addEventListener("click", ()=>{
     winsAmount = parseInt(winsAmountUser.value)
     winsAmountText.innerText = winsAmount
+    setTimeout(() => {
+        settingsDiv.classList.toggle("show")
+    }, 200);
 })
 
 winsAmountUser.addEventListener("input", ()=>{
