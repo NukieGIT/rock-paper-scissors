@@ -19,6 +19,7 @@ let count = 0
 let highestCombo = 0
 let winsAmount = 10
 let duringChoice = false
+let duringGame = false
 let r1
 let r2
 let winChance = .33
@@ -31,16 +32,20 @@ const tieText = "You Tied!"
 winsAmountText.innerText = winsAmountUser.value = winsAmount
 
 settingsIcon.addEventListener("click", ()=>{
-    settingsDiv.classList.toggle("show")
-    settingsIcon.classList.toggle("spin")
+    if (!duringGame) {
+        settingsDiv.classList.toggle("show")
+        settingsIcon.classList.toggle("spin")
+    }
 })
 
 applySettingsButton.addEventListener("click", ()=>{
-    winsAmount = parseInt(winsAmountUser.value)
-    winsAmountText.innerText = winsAmount
-    setTimeout(() => {
-        settingsDiv.classList.toggle("show")
-    }, 200);
+    if (!duringGame){
+        winsAmount = parseInt(winsAmountUser.value)
+        winsAmountText.innerText = winsAmount
+        setTimeout(() => {
+            settingsDiv.classList.toggle("show")
+        }, 200);
+    }
 })
 
 winsAmountUser.addEventListener("input", ()=>{
@@ -71,6 +76,8 @@ function startClick() {
 }
 // main
 function los() {
+    settingsDiv.classList.remove("show")
+    duringGame = true
     if (!duringChoice) {
         duringChoice = true
 
@@ -243,6 +250,7 @@ function los() {
                         }
                         updateScore()
                         if (pScore === winsAmount || cScore === winsAmount) {
+                            duringGame = false
                             restart.classList.add("delay")
                             restart.classList.remove("unshow")
                             restart.classList.add("show")
