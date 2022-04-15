@@ -2,11 +2,12 @@
     --applyButtonHeight: 10px;
     --equalChancesButtonHeight: 5px;
 }
-
+*{
+    font-family: 'Comfortaa', cursive;
+}
 body{
     margin: 0;
     background-color: darkslategray;
-    font-family: 'Comfortaa', cursive;
     overflow: hidden;
 }
 .container {
@@ -193,6 +194,7 @@ body{
 .equalChancesSettings{
     position: relative;
     outline: none;
+    white-space: pre-line;
     border: 1px solid rgb(212, 255, 92);
     border-radius: 20px;
     /* top: 5%;
@@ -242,7 +244,7 @@ body{
     border: 1px solid white;
 }
 
-.chancesPercentOutputText{
+/* .chancesPercentOutputText{
     position: relative;
     color: white;
     bottom: 5%;
@@ -250,9 +252,9 @@ body{
 
 .chancesPercentOutputText.redPulse{
     animation: redPulse 1s alternate infinite ease-in-out;
-}
+} */
 
-.chancesPercentOutputText2{
+/* .chancesPercentOutputText2{
     visibility: hidden;
     position: relative;
     color: lightgray;
@@ -261,7 +263,7 @@ body{
 
 .chancesPercentOutputText2.show{
     visibility: visible;
-}
+} */
 
 @keyframes redPulse {
     from{
@@ -295,7 +297,7 @@ body{
     height: auto;
 }
 
-.restart.unshow{
+.restart.hide{
     animation: fadeOut 1s ease-in-out;
     animation-fill-mode: forwards;
     height: 0;

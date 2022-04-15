@@ -38,7 +38,7 @@ const loseText = "You Lose!"
 const tieText = "You Tied!"
 
 winsAmountText.innerText = winsAmountUser.value = winsAmount
-chancesPercentOutput.innerText = (winChance + 1) + (loseChance - winChance) + (tieChance - loseChance)
+// chancesPercentOutput.innerText = (winChance + 1) + (loseChance - winChance) + (tieChance - loseChance)
 
 
 function setupChancesValueInput() {
@@ -87,45 +87,17 @@ winsAmountUser.addEventListener("input", ()=>{
 winChanceUser.addEventListener("input", ()=>{
     if (winChanceUser.value > 100) winChanceUser.value = 100
     winChanceUser.value = Math.trunc(Math.abs(winChanceUser.value))
-    chancesPercentOutput.innerText = parseInt(winChanceUser.value) + parseInt(loseChanceUser.value) + parseInt(tieChanceUser.value)
-    if (chancesPercentOutput.innerText < 100){
-        chancesPercentOutputText.classList.add("redPulse")
-        chancesPercentOutputBelow = true
-        chancesPercentOutputText2.classList.add("show")
-    }else{
-        chancesPercentOutputText.classList.remove("redPulse")
-        chancesPercentOutputBelow = false
-        chancesPercentOutputText2.classList.remove("show")
-    }
+    tieChanceUser.value = 100 - (parseInt(winChanceUser.value) + parseInt(loseChanceUser.value))
+    // chancesPercentOutput.innerText = parseInt(winChanceUser.value) + parseInt(loseChanceUser.value) + parseInt(tieChanceUser.value)
 })
 loseChanceUser.addEventListener("input", ()=>{
     if (loseChanceUser.value > 100) loseChanceUser.value = 100
     loseChanceUser.value = Math.trunc(Math.abs(loseChanceUser.value))
-    chancesPercentOutput.innerText = parseInt(winChanceUser.value) + parseInt(loseChanceUser.value) + parseInt(tieChanceUser.value)
-    if (chancesPercentOutput.innerText < 100){
-        chancesPercentOutputText.classList.add("redPulse")
-        chancesPercentOutputBelow = true
-        chancesPercentOutputText2.classList.add("show")
-    }else{
-        chancesPercentOutputText.classList.remove("redPulse")
-        chancesPercentOutputBelow = false
-        chancesPercentOutputText2.classList.remove("show")
-    }
+    tieChanceUser.value = 100 - (parseInt(winChanceUser.value) + parseInt(loseChanceUser.value))
+    // chancesPercentOutput.innerText = parseInt(winChanceUser.value) + parseInt(loseChanceUser.value) + parseInt(tieChanceUser.value)
+
 })
-tieChanceUser.addEventListener("input", ()=>{
-    if (tieChanceUser.value > 100) tieChanceUser.value = 100
-    tieChanceUser.value = Math.trunc(Math.abs(tieChanceUser.value))
-    chancesPercentOutput.innerText = parseInt(winChanceUser.value) + parseInt(loseChanceUser.value) + parseInt(tieChanceUser.value)
-    if (chancesPercentOutput.innerText < 100){
-        chancesPercentOutputText.classList.add("redPulse")
-        chancesPercentOutputBelow = true
-        chancesPercentOutputText2.classList.add("show")
-    }else{
-        chancesPercentOutputText.classList.remove("redPulse")
-        chancesPercentOutputBelow = false
-        chancesPercentOutputText2.classList.remove("show")
-    }
-})
+
 
 // handling restart button
 restartButton.addEventListener("click", ()=>{
@@ -142,7 +114,7 @@ restartButton.addEventListener("click", ()=>{
             
         }, 1000)
         restart.classList.remove("show")
-        restart.classList.add("unshow")
+        restart.classList.add("hide")
 })
 
 function startClick() {
@@ -326,7 +298,7 @@ function los() {
                         if (pScore === winsAmount || cScore === winsAmount) {
                             duringGame = false
                             restart.classList.add("delay")
-                            restart.classList.remove("unshow")
+                            restart.classList.remove("hide")
                             restart.classList.add("show")
                             const winner = pScore === winsAmount ? winText : loseText + " Try again!"
                             winnerText.innerText = winner
