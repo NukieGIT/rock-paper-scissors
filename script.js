@@ -27,7 +27,7 @@ let highestCombo = 0
 let winsAmount = 10
 let duringChoice = false
 let duringGame = false
-let chancesPercentOutputBelow = false
+// let chancesPercentOutputBelow = false
 let r1
 let r2
 let winChance = 33
@@ -57,16 +57,14 @@ settingsIcon.addEventListener("click", ()=>{
 
 applySettingsButton.addEventListener("click", ()=>{
     if (!duringGame){
-        if (!chancesPercentOutputBelow) {
-            winChance = parseInt(winChanceUser.value - 1)
-            loseChance = parseInt(loseChanceUser.value) + winChance
-            tieChance = parseInt(tieChanceUser.value) + loseChance
-            winsAmount = winsAmountUser.value
-            winsAmountText.innerText = winsAmount
-            setTimeout(() => {
-                settingsDiv.classList.toggle("show")
-            }, 200);
-        }
+        winChance = parseInt(winChanceUser.value - 1)
+        loseChance = parseInt(loseChanceUser.value) + winChance
+        tieChance = parseInt(tieChanceUser.value) + loseChance
+        winsAmount = winsAmountUser.value
+        winsAmountText.innerText = winsAmount
+        setTimeout(() => {
+            settingsDiv.classList.toggle("show")
+        }, 200);
     }
 })
 
@@ -88,12 +86,20 @@ winChanceUser.addEventListener("input", ()=>{
     if (winChanceUser.value > 100) winChanceUser.value = 100
     winChanceUser.value = Math.trunc(Math.abs(winChanceUser.value))
     tieChanceUser.value = 100 - (parseInt(winChanceUser.value) + parseInt(loseChanceUser.value))
+    if (tieChanceUser.value < 0) {
+        tieChanceUser.value = 0
+        loseChanceUser.value = 100 - (parseInt(winChanceUser.value) + parseInt(tieChanceUser.value))
+    }
     // chancesPercentOutput.innerText = parseInt(winChanceUser.value) + parseInt(loseChanceUser.value) + parseInt(tieChanceUser.value)
 })
 loseChanceUser.addEventListener("input", ()=>{
     if (loseChanceUser.value > 100) loseChanceUser.value = 100
     loseChanceUser.value = Math.trunc(Math.abs(loseChanceUser.value))
     tieChanceUser.value = 100 - (parseInt(winChanceUser.value) + parseInt(loseChanceUser.value))
+    if (tieChanceUser.value < 0) {
+        tieChanceUser.value = 0
+        winChanceUser.value = 100 - (parseInt(loseChanceUser.value) + parseInt(tieChanceUser.value))
+    }
     // chancesPercentOutput.innerText = parseInt(winChanceUser.value) + parseInt(loseChanceUser.value) + parseInt(tieChanceUser.value)
 
 })
@@ -172,7 +178,7 @@ function los() {
                     if (e.key === "r" || e.key === "p" || e.key === "s") {
                         
                         // winning losing and tying conditions
-                        let randNum = Math.floor(Math.random() * 99) + 1
+                        let randNum = Math.floor(Math.random() * 100)
                         
                         if (r1==0) {
                             if (randNum < winChance) {
