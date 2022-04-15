@@ -25,21 +25,27 @@
             <p class="imageText"></p>
         </div>
     </div>
-    <div class="button1">
+    <div class="button1 noSelect">
         <button class="los" id="but1" onclick="los()">Start</button>
         <p class="losResult" id="winner"></p>
         <p class="combo"><span id="combo">0</span>x</p>
     </div>
-    <div class="restart unshow">
+    <div class="restart unshow noSelect">
         <h1 class="winnerText unshow">You Won!</h1>
         <p class="highestComboText">Highest Combo: <span id="highestComboText"></span></p>
         <button id="restartButton">RESTART</button>
     </div>
     <div class="settings">
-        <h2>Needed Wins: <input type="number" class="winsAmountUser" min="0" max="9999"></h2>
+        <h2>Needed Wins: <input type="number" class="winsAmountUser userInput" min="0" max="9999"></h2>
+        <h2>Win Chance(%): <input type="number" class="winChanceUser userInput" min="0" max="100"></h2>
+        <h2>Lose Chance(%): <input type="number" class="loseChanceUser userInput" min="0" max="100"></h2>
+        <h2>Tie Chance(%): <input type="number" class="tieChanceUser userInput" min="0" max="100"></h2>
+        <p class="chancesPercentOutputText">Percent Value: <span class="chancesPercentOutput"></span></p>
+        <p class="chancesPercentOutputText2">Your Percentages are below 100!!</p>
+        <button class="equalChancesSettings">Equal Win Chances</button>
         <button class="applySettings">Apply</button>
     </div>
-    <div class="settingsIconContainer">
+    <div class="settingsIconContainer noSelect">
         <img src="img/settings-icon.png" alt="settings" class="settingsIcon">
     </div>
 </body>

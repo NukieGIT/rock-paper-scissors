@@ -8,10 +8,17 @@ let combo = document.getElementById("combo")
 let highestComboText = document.getElementById("highestComboText")
 let winsAmountText = document.getElementById("winsAmount")
 let winsAmountUser = document.querySelector(".winsAmountUser")
+let winChanceUser = document.querySelector(".winChanceUser")
+let loseChanceUser = document.querySelector(".loseChanceUser")
+let tieChanceUser = document.querySelector(".tieChanceUser")
 let imageText = document.querySelectorAll(".imageText")
 let settingsIcon = document.querySelector(".settingsIcon")
 let settingsDiv = document.querySelector(".settings")
 let applySettingsButton = document.querySelector(".applySettings")
+let equalChancesButton = document.querySelector(".equalChancesSettings")
+let chancesPercentOutput = document.querySelector(".chancesPercentOutput")
+let chancesPercentOutputText = document.querySelector(".chancesPercentOutputText")
+let chancesPercentOutputText2 = document.querySelector(".chancesPercentOutputText2")
 let pScore = 0
 let cScore = 0
 let lastMove
@@ -20,16 +27,26 @@ let highestCombo = 0
 let winsAmount = 10
 let duringChoice = false
 let duringGame = false
+let chancesPercentOutputBelow = false
 let r1
 let r2
-let winChance = .33
-let loseChance = .66
-let tieChance = 1
+let winChance = 33
+let loseChance = 66
+let tieChance = 99
 const winText = "You Win!"
 const loseText = "You Lose!"
 const tieText = "You Tied!"
 
 winsAmountText.innerText = winsAmountUser.value = winsAmount
+chancesPercentOutput.innerText = (winChance + 1) + (loseChance - winChance) + (tieChance - loseChance)
+
+
+function setupChancesValueInput() {
+    winChanceUser.value = winChance + 1
+    loseChanceUser.value = loseChance - winChance
+    tieChanceUser.value = tieChance - loseChance
+}
+setupChancesValueInput()
 
 settingsIcon.addEventListener("click", ()=>{
     if (!duringGame) {
@@ -40,17 +57,74 @@ settingsIcon.addEventListener("click", ()=>{
 
 applySettingsButton.addEventListener("click", ()=>{
     if (!duringGame){
-        winsAmount = parseInt(winsAmountUser.value)
-        winsAmountText.innerText = winsAmount
-        setTimeout(() => {
-            settingsDiv.classList.toggle("show")
-        }, 200);
+        if (!chancesPercentOutputBelow) {
+            winChance = parseInt(winChanceUser.value - 1)
+            loseChance = parseInt(loseChanceUser.value) + winChance
+            tieChance = parseInt(tieChanceUser.value) + loseChance
+            winsAmount = winsAmountUser.value
+            winsAmountText.innerText = winsAmount
+            setTimeout(() => {
+                settingsDiv.classList.toggle("show")
+            }, 200);
+        }
+    }
+})
+
+equalChancesButton.addEventListener("click", ()=>{
+    if (!duringGame) {
+        winChance = 33
+        loseChance = 66
+        tieChance = 99
+        setupChancesValueInput()
     }
 })
 
 winsAmountUser.addEventListener("input", ()=>{
     if (winsAmountUser.value.length > 4) winsAmountUser.value = winsAmountUser.value.slice(0, 4)
     winsAmountUser.value = Math.trunc(Math.abs(winsAmountUser.value))
+})
+
+winChanceUser.addEventListener("input", ()=>{
+    if (winChanceUser.value > 100) winChanceUser.value = 100
+    winChanceUser.value = Math.trunc(Math.abs(winChanceUser.value))
+    chancesPercentOutput.innerText = parseInt(winChanceUser.value) + parseInt(loseChanceUser.value) + parseInt(tieChanceUser.value)
+    if (chancesPercentOutput.innerText < 100){
+        chancesPercentOutputText.classList.add("redPulse")
+        chancesPercentOutputBelow = true
+        chancesPercentOutputText2.classList.add("show")
+    }else{
+        chancesPercentOutputText.classList.remove("redPulse")
+        chancesPercentOutputBelow = false
+        chancesPercentOutputText2.classList.remove("show")
+    }
+})
+loseChanceUser.addEventListener("input", ()=>{
+    if (loseChanceUser.value > 100) loseChanceUser.value = 100
+    loseChanceUser.value = Math.trunc(Math.abs(loseChanceUser.value))
+    chancesPercentOutput.innerText = parseInt(winChanceUser.value) + parseInt(loseChanceUser.value) + parseInt(tieChanceUser.value)
+    if (chancesPercentOutput.innerText < 100){
+        chancesPercentOutputText.classList.add("redPulse")
+        chancesPercentOutputBelow = true
+        chancesPercentOutputText2.classList.add("show")
+    }else{
+        chancesPercentOutputText.classList.remove("redPulse")
+        chancesPercentOutputBelow = false
+        chancesPercentOutputText2.classList.remove("show")
+    }
+})
+tieChanceUser.addEventListener("input", ()=>{
+    if (tieChanceUser.value > 100) tieChanceUser.value = 100
+    tieChanceUser.value = Math.trunc(Math.abs(tieChanceUser.value))
+    chancesPercentOutput.innerText = parseInt(winChanceUser.value) + parseInt(loseChanceUser.value) + parseInt(tieChanceUser.value)
+    if (chancesPercentOutput.innerText < 100){
+        chancesPercentOutputText.classList.add("redPulse")
+        chancesPercentOutputBelow = true
+        chancesPercentOutputText2.classList.add("show")
+    }else{
+        chancesPercentOutputText.classList.remove("redPulse")
+        chancesPercentOutputBelow = false
+        chancesPercentOutputText2.classList.remove("show")
+    }
 })
 
 // handling restart button
@@ -126,7 +200,7 @@ function los() {
                     if (e.key === "r" || e.key === "p" || e.key === "s") {
                         
                         // winning losing and tying conditions
-                        let randNum = Math.random()
+                        let randNum = Math.floor(Math.random() * 99) + 1
                         
                         if (r1==0) {
                             if (randNum < winChance) {
@@ -135,7 +209,7 @@ function los() {
                             }else if (randNum < loseChance) {
                                 r2 = 1
                                 images[1].src = imgtab[r2]
-                            }else if(randNum < tieChance){
+                            }else if (randNum < tieChance){
                                 r2 = 0
                                 images[1].src = imgtab[r2]
                             }
@@ -146,7 +220,7 @@ function los() {
                             }else if (randNum < loseChance) {
                                 r2 = 2
                                 images[1].src = imgtab[r2]
-                            }else if(randNum < tieChance){
+                            }else if (randNum < tieChance){
                                 r2 = 1
                                 images[1].src = imgtab[r2]
                             }
@@ -157,7 +231,7 @@ function los() {
                             }else if (randNum < loseChance) {
                                 r2 = 0
                                 images[1].src = imgtab[r2]
-                            }else if(randNum < tieChance){
+                            }else if (randNum < tieChance){
                                 r2 = 2
                                 images[1].src = imgtab[r2]
                             }
