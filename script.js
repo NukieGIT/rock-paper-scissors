@@ -101,14 +101,15 @@ loseChanceUser.addEventListener("input", ()=>{
         winChanceUser.value = 100 - (parseInt(loseChanceUser.value) + parseInt(tieChanceUser.value))
     }
     // chancesPercentOutput.innerText = parseInt(winChanceUser.value) + parseInt(loseChanceUser.value) + parseInt(tieChanceUser.value)
-
+    
 })
 
 
 // handling restart button
 restartButton.addEventListener("click", ()=>{
         pScore = cScore = highestCombo = count = 0
-        r1 = r2 = null
+        duringGame = false
+        r1 = r2 = lastMove = null
         images[0].src = "#"
         images[1].src = "#"
         winner.innerText = null
@@ -302,7 +303,6 @@ function los() {
                         }
                         updateScore()
                         if (pScore === winsAmount || cScore === winsAmount) {
-                            duringGame = false
                             restart.classList.add("delay")
                             restart.classList.remove("hide")
                             restart.classList.add("show")
