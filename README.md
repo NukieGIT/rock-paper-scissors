@@ -15,10 +15,10 @@ There's a lot of stuff to fix, especially the css... but well, i will do that so
 
 |   | List                       | Status |
 |---|----------------------------|:------:|
-| 1 | Finish basic settings menu |    X   |
-| 2 | Make a 2 player mode       |    X   |
-| 3 | Make a mode selection menu |    X   |
-| 4 | Fix css styling            |    X   |
+| 1 | Finish basic settings menu |    ✔   |
+| 2 | Make a 2 player mode       |    ❌  |
+| 3 | Make a mode selection menu |    ❌  |
+| 4 | Fix css styling            |    ❌  |
 
 
 # The best Q&A ever
