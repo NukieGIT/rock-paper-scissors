@@ -60,7 +60,7 @@ applySettingsButton.addEventListener("click", ()=>{
         winChance = parseInt(winChanceUser.value - 1)
         loseChance = parseInt(loseChanceUser.value) + winChance
         tieChance = parseInt(tieChanceUser.value) + loseChance
-        winsAmount = winsAmountUser.value
+        winsAmount = parseInt(winsAmountUser.value)
         winsAmountText.innerText = winsAmount
         setTimeout(() => {
             settingsDiv.classList.toggle("show")
