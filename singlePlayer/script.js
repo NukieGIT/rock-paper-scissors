@@ -1,7 +1,7 @@
 let images = document.getElementsByClassName('image')
 let restartButton = document.getElementById("restartButton")
 let restart = document.querySelector(".restart")
-const imgtab = ["img/scissors1.png", "img/rock1.png", "img/paper1.png"]
+const imgtab = ["../img/scissors1.png", "../img/rock1.png", "../img/paper1.png"]
 let winnerText = document.querySelector('.winnerText')
 let losButton = document.querySelector(".los")
 let combo = document.getElementById("combo")

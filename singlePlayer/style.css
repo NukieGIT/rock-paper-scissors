@@ -1,0 +1,338 @@
+:root{
+    --applyButtonHeight: 10px;
+    --equalChancesButtonHeight: 5px;
+}
+*{
+    font-family: 'Comfortaa', cursive;
+}
+body{
+    margin: 0;
+    background-color: darkslategray;
+    overflow: hidden;
+}
+.container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto auto;
+    gap: 10px 10px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "result result result result"
+      "player player pc pc";
+    justify-items: center;
+}
+  
+  .result { grid-area: result; text-align: center; width: 100vw;}
+  
+  .player { grid-area: player; width: 200px;}
+  
+  .pc { grid-area: pc; width: 200px;}
+  
+
+.button1{
+    width: 100vw;
+    height: 300px;
+}
+
+
+.image{
+    width: 100%;
+    height: auto;
+
+}
+
+.los, .losResult, .combo{
+    width: 100vw;
+    height: 50px;
+    text-align: center;
+}
+#but1{
+    position: absolute;
+    top: 350px;
+    background-color: rgb(60, 100, 100);
+    border: 0;
+    font-size: 40px;
+    transition: .2s ease-in-out;
+}
+#but1:hover{
+    transform: scale(1.2);
+    cursor: pointer;
+}
+#but1:active{
+    transform: scale(1);
+}
+#winner{
+    position: absolute;
+    top: 400px;
+}
+.combo{
+    position: absolute;
+    top: 450px;
+}
+
+#pScore, #cScore{
+    background-color: rgb(104, 104, 104);
+    padding: 5px 0px;
+    width: 60px;
+    position: static;
+    text-align: center;
+    display: inline-block;
+    border-radius: 20%;
+}
+.result{
+    background-color: rgb(136, 136, 136);
+    width: 100%;
+}
+
+.imageText{
+    text-align: center;
+}
+
+.restart{
+    overflow: hidden;
+    display: flex;
+    height: 0;
+    opacity: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 1);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.restart button{
+    color: white;
+    border: 2px groove black;
+    background-color: gray;
+    border-radius: 100px;
+    font-size: 30px;
+    padding: 20px;
+    margin-top: 160px;
+    transition: all .3s ease-in-out;
+}
+
+.restart button:hover{
+    color: black;
+    border: 2px groove white;
+    background-color: darkgray;
+}
+.settingsIconContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 93vh;
+}
+
+.settingsIcon{
+    height: 60px;
+    transition: all 1s cubic-bezier(.47,-0.94,.58,1.89);
+    /* animation: scaleDown .3s ease-in-out; */
+}
+
+.settingsIcon:hover{
+    animation: scaleUp .3s alternate ease-in-out infinite;
+    /* transform: scale(1.05); */
+}
+
+/* @keyframes scaleUp {
+    from{
+        transform: scale(1);
+    }
+    to{
+        transform: scale(1.05);
+    }
+}
+
+@keyframes scaleDown {
+    from{
+        transform: scale(1.05);
+    }
+    to{
+        transform: scale(1);
+    }
+} */
+
+.settingsIcon.spin{
+    transform: rotate(180deg);
+}
+
+.settings{
+    /* overflow-y: scroll; */
+    display: flex;
+    border-top: 1px solid white;
+    border-left: 1px solid white;
+    border-bottom: 1px solid white;
+    /* height: 0; */
+    opacity: 0;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    background-color: rgba(0, 0, 0, 1);
+    border-radius: 20px 20px 20px 20px;
+    position: fixed;
+    top: 20vh;
+    bottom: 20vh;
+    right: 80vw;
+    left: 0;
+    transform: translateX(-20vw);
+    transition: all 1s ease-in-out;
+}
+
+.settings h2{
+    color: aquamarine;
+    position: relative;
+    top: 1%;
+    /* left: 5%; */
+    right: 0;
+    bottom: 0;
+}
+.equalChancesSettings{
+    position: relative;
+    outline: none;
+    white-space: pre-line;
+    border: 1px solid rgb(212, 255, 92);
+    border-radius: 20px;
+    /* top: 5%;
+    bottom: 5%; */
+    /* margin-top: 5%;
+    margin-bottom: 10%; */
+    float: right;
+    padding: var(--equalChancesButtonHeight) calc(var(--equalChancesButtonHeight) * 2) var(--equalChancesButtonHeight) calc(var(--equalChancesButtonHeight) * 2);
+    background-color: rgb(167, 167, 167);
+    transition: .15s all ease-in-out;
+}
+
+.equalChancesSettings:hover{
+    transform: scale(1.1) rotate(5deg);
+    perspective: 1px;
+    border-color: white;
+}
+
+.settings.show{
+    opacity: 1;
+    border-radius: 20px 0px 0px 20px;
+    transform: translateX(80vw);
+
+}
+
+.applySettings{
+    position: relative;
+    outline: none;
+    border: 1px solid rgb(212, 255, 92);
+    border-radius: 20px;
+    /* top: 5%;
+    bottom: 5%; */
+    margin-top: 5%;
+    margin-bottom: 10%;
+    padding: var(--applyButtonHeight) calc(var(--applyButtonHeight) * 2) var(--applyButtonHeight) calc(var(--applyButtonHeight) * 2);
+    background-color: rgb(0, 158, 0);
+    transition: .15s all ease-in-out;
+}
+
+.applySettings:hover{
+    transform: scale(1.1) rotate(5deg);
+    perspective: 1px;
+    border-color: white;
+}
+
+.applySettings:active{
+    border: 1px solid white;
+}
+
+/* .chancesPercentOutputText{
+    position: relative;
+    color: white;
+    bottom: 5%;
+}
+
+.chancesPercentOutputText.redPulse{
+    animation: redPulse 1s alternate infinite ease-in-out;
+} */
+
+/* .chancesPercentOutputText2{
+    visibility: hidden;
+    position: relative;
+    color: lightgray;
+    bottom: 10%;
+}
+
+.chancesPercentOutputText2.show{
+    visibility: visible;
+} */
+
+@keyframes redPulse {
+    from{
+        color: white;
+    }
+    to{
+        color: red;
+    }
+}
+
+.userInput{
+    color: white;
+    background-color: rgb(104, 104, 104);
+    padding: 5px 0px;
+    width: 50px;
+    position: static;
+    text-align: right;
+    display: inline-block;
+    border-radius: 20%;
+    border: none;
+    transform: translateY(-3px);
+}
+
+.winnerText, .highestComboText{
+    color: white;
+}
+
+.restart.show{
+    animation: fadeIn 1s ease-in-out;
+    animation-fill-mode: forwards;
+    height: auto;
+}
+
+.restart.hide{
+    animation: fadeOut 1s ease-in-out;
+    animation-fill-mode: forwards;
+    height: 0;
+    pointer-events: none;
+
+}
+
+.restart.delay{
+    height: auto;
+}
+
+.noSelect{
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */
+}
+
+@keyframes fadeIn {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 0
+    }
+}
