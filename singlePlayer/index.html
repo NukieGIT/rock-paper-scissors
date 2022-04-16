@@ -12,6 +12,9 @@
 </head>
 <body>
     <div class="container">
+        <div class="backButton">
+            <a href="../"><</a>
+        </div>
         <div class="result">
             <h4>First to <span id="winsAmount"></span> wins</h4>
             <h3>Player <span id="pScore">0</span> - <span id="cScore">0</span> Computer</h3>
@@ -40,8 +43,6 @@
         <h2>Win Chance(%): <input type="number" class="winChanceUser userInput" min="0" max="100"></h2>
         <h2>Lose Chance(%): <input type="number" class="loseChanceUser userInput" min="0" max="100"></h2>
         <h2>Tie Chance(%): <input type="number" class="tieChanceUser userInput" min="0" max="100" readonly></h2>
-        <!-- <p class="chancesPercentOutputText">Percent Value: <span class="chancesPercentOutput"></span></p>
-        <p class="chancesPercentOutputText2">Your Percentages are below 100!!</p> -->
         <button class="equalChancesSettings">Equal
             Win Chances</button>
         <button class="applySettings">Apply</button>

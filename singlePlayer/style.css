@@ -21,13 +21,41 @@ body{
       "player player pc pc";
     justify-items: center;
 }
-  
+
   .result { grid-area: result; text-align: center; width: 100vw;}
   
   .player { grid-area: player; width: 200px;}
   
   .pc { grid-area: pc; width: 200px;}
   
+
+.backButton{
+    position: absolute;
+    font-size: 5em;
+    left: 30px;
+    top: 10px;
+}
+
+.backButton a, .backButton a:link, .backButton a:visited{
+    text-decoration: none;
+    color: black;
+}
+
+.backButton:hover{
+    animation: moveSideways 1s alternate 1 forwards ease-in-out;
+}
+
+@keyframes moveSideways {
+    0%{
+        transform: translateX(0);
+    }
+    50%{
+        transform: translateX(-20px);
+    }
+    100%{
+        transform: translateX(0);
+    }
+}
 
 .button1{
     width: 100vw;
@@ -134,35 +162,12 @@ body{
     /* animation: scaleDown .3s ease-in-out; */
 }
 
-.settingsIcon:hover{
-    animation: scaleUp .3s alternate ease-in-out infinite;
-    /* transform: scale(1.05); */
-}
-
-/* @keyframes scaleUp {
-    from{
-        transform: scale(1);
-    }
-    to{
-        transform: scale(1.05);
-    }
-}
-
-@keyframes scaleDown {
-    from{
-        transform: scale(1.05);
-    }
-    to{
-        transform: scale(1);
-    }
-} */
-
 .settingsIcon.spin{
     transform: rotate(180deg);
 }
 
 .settings{
-    /* overflow-y: scroll; */
+    overflow-y: auto;
     display: flex;
     border-top: 1px solid white;
     border-left: 1px solid white;
@@ -178,7 +183,7 @@ body{
     top: 20vh;
     bottom: 20vh;
     right: 80vw;
-    left: 0;
+    padding: 0px 50px 0px 50px;
     transform: translateX(-20vw);
     transition: all 1s ease-in-out;
 }
@@ -242,36 +247,6 @@ body{
 
 .applySettings:active{
     border: 1px solid white;
-}
-
-/* .chancesPercentOutputText{
-    position: relative;
-    color: white;
-    bottom: 5%;
-}
-
-.chancesPercentOutputText.redPulse{
-    animation: redPulse 1s alternate infinite ease-in-out;
-} */
-
-/* .chancesPercentOutputText2{
-    visibility: hidden;
-    position: relative;
-    color: lightgray;
-    bottom: 10%;
-}
-
-.chancesPercentOutputText2.show{
-    visibility: visible;
-} */
-
-@keyframes redPulse {
-    from{
-        color: white;
-    }
-    to{
-        color: red;
-    }
 }
 
 .userInput{
