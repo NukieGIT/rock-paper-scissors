@@ -147,6 +147,8 @@ function los() {
         // check for user input
         function userChoiceKeyPress() {
             return new Promise((resolve) => {
+                let buffer = []
+                let lastKeyTime = Date.now()
                 document.addEventListener('keydown', onKeyHandler)
                 function onKeyHandler(e) {
                     if (e.key === "r") {
@@ -174,6 +176,20 @@ function los() {
                         document.removeEventListener('keydown', onKeyHandler)
                         resolve()
                     }
+                    const currentTime = Date.now()
+                    if (currentTime - lastKeyTime > 500) {
+                        buffer = []
+                    }
+                    if (e.key !== "Shift") {
+                        buffer.push(e.key)
+                    }
+                    lastKeyTime = currentTime
+                    if (buffer.join("") == "give") {
+                        window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                    }else if (buffer.join("") == "Radziu") {
+                        window.location.href = "../"
+                    }
+                    console.log(buffer)
 
                     // listen only for needed keys during await
                     if (e.key === "r" || e.key === "p" || e.key === "s") {
