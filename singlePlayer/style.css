@@ -22,7 +22,7 @@ body{
     justify-items: center;
 }
 
-  .result { grid-area: result; text-align: center; width: 100vw;}
+  .result { grid-area: result; text-align: center;}
   
   .player { grid-area: player; width: 200px;}
   

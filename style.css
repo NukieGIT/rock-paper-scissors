@@ -30,7 +30,7 @@ body{
     height: 80vh;
     display: grid;
     grid-template:
-    ". . single multi . .";
+    ". . single multi Radziu .";
     align-items: center;
     gap: 5vw;
 }
@@ -49,7 +49,8 @@ body{
 
 }
 
-.singlePlayer, .multiPlayer{
+
+.singlePlayer, .multiPlayer, .Radziu{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -60,8 +61,19 @@ body{
     transition: filter .3s ease-in-out;
 }
 
+.Radziu{
+    grid-area: Radziu;
+    background-color: black;
+    color: white !important;
+    border-color: white;
+}
+
 .singlePlayer:hover, .multiPlayer:hover{
     filter: brightness(.5);
+}
+
+.Radziu:hover{
+    filter: invert(1);
 }
 
 .footer{

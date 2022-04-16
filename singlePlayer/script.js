@@ -185,11 +185,11 @@ function los() {
                     }
                     lastKeyTime = currentTime
                     if (buffer.join("") == "give") {
-                        window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                        window.location.href = "https://bitly.com/98K8eH"
                     }else if (buffer.join("") == "Radziu") {
                         window.location.href = "../"
+                        sessionStorage.setItem("secret", "Radziu mode")
                     }
-                    console.log(buffer)
 
                     // listen only for needed keys during await
                     if (e.key === "r" || e.key === "p" || e.key === "s") {
