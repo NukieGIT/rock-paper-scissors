@@ -5,6 +5,7 @@
 *{
     font-family: 'Comfortaa', cursive;
 }
+
 body{
     margin: 0;
     background-color: darkslategray;
@@ -41,8 +42,8 @@ body{
     color: black;
 }
 
-.backButton:hover{
-    animation: moveSideways 1s alternate 1 forwards ease-in-out;
+.backButton.animate{
+    animation: moveSideways 1s alternate infinite forwards ease-in-out;
 }
 
 @keyframes moveSideways {
@@ -69,6 +70,49 @@ body{
 
 }
 
+.emulateButtons{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    top: 600px;
+    width: 100vw;
+    height: 0;
+    opacity: 0;
+    gap: 10px;
+}
+
+.emulateButtons.show{
+    height: 50px;
+    opacity: 1;
+}
+
+.emulateButton{
+    position: relative;
+    background-color: rgb(12, 179, 179);
+    width: 100px;
+    height: 50px;
+    min-height: 50px;
+    outline: none;
+    border: 1px solid black;
+    transition: transform .15s ease-in-out, border-color .15s ease-in-out;
+    border-radius: 20px;
+}
+
+.emulateButton:hover{
+    transform: scale(1.1) rotate(5deg);
+    perspective: 1px;
+    border-color: white;
+}
+
+@media (max-width: 500px) {
+    .emulateButtons{
+        flex-direction: column;
+    }
+}
+
+
 .los, .losResult, .combo{
     width: 100vw;
     height: 50px;
@@ -80,7 +124,7 @@ body{
     background-color: rgb(60, 100, 100);
     border: 0;
     font-size: 40px;
-    transition: .2s ease-in-out;
+    transition: transform .2s ease-in-out;
 }
 #but1:hover{
     transform: scale(1.2);
@@ -168,6 +212,7 @@ body{
 
 .settings{
     overflow-y: auto;
+    overflow-x: hidden;
     display: flex;
     border-top: 1px solid white;
     border-left: 1px solid white;
@@ -175,14 +220,14 @@ body{
     /* height: 0; */
     opacity: 0;
     flex-direction: column;
-    /* justify-content: center; */
+    justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 1);
     border-radius: 20px 20px 20px 20px;
     position: fixed;
     top: 20vh;
     bottom: 20vh;
-    right: 80vw;
+    right: 75vw;
     padding: 0px 50px 0px 50px;
     transform: translateX(-20vw);
     transition: all 1s ease-in-out;
@@ -196,6 +241,74 @@ body{
     right: 0;
     bottom: 0;
 }
+
+    /* toggle switch */
+
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 24px;
+}
+  
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: rgb(87, 87, 87);
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #88ff64;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #88ff64;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(16px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* ----------------------------------------------------------------------------------- */
+
 .equalChancesSettings{
     position: relative;
     outline: none;
@@ -221,7 +334,7 @@ body{
 .settings.show{
     opacity: 1;
     border-radius: 20px 0px 0px 20px;
-    transform: translateX(80vw);
+    transform: translateX(75vw);
 
 }
 

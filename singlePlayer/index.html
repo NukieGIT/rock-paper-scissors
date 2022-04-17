@@ -33,6 +33,11 @@
         <p class="losResult" id="winner"></p>
         <p class="combo"><span id="combo">0</span>x</p>
     </div>
+    <div class="emulateButtons noSelect">
+        <button class="emulateR emulateButton">Rock</button>
+        <button class="emulateP emulateButton">Paper</button>
+        <button class="emulateS emulateButton">Scissors</button>
+    </div>
     <div class="restart hide noSelect">
         <h1 class="winnerText hide">You Won!</h1>
         <p class="highestComboText">Highest Combo: <span id="highestComboText"></span></p>
@@ -43,6 +48,11 @@
         <h2>Win Chance(%): <input type="number" class="winChanceUser userInput" min="0" max="100"></h2>
         <h2>Lose Chance(%): <input type="number" class="loseChanceUser userInput" min="0" max="100"></h2>
         <h2>Tie Chance(%): <input type="number" class="tieChanceUser userInput" min="0" max="100" readonly></h2>
+        <h2>Enable keyboard buttons emulation: 
+            <label class="switch">
+                <input type="checkbox" class="emulateButtonsCheckBox">
+                <span class="slider round"></span>
+            </label></h2>
         <button class="equalChancesSettings">Equal
             Win Chances</button>
         <button class="applySettings">Apply</button>
