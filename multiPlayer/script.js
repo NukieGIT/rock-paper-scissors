@@ -70,7 +70,7 @@ applySettingsButton.addEventListener("click", ()=>{
         }
         winsAmountText.innerText = winsAmount
         setTimeout(() => {
-            settingsDiv.classList.toggle("show")
+            settingsDiv.classList.remove("show")
         }, 200);
     }
 })

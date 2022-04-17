@@ -87,7 +87,7 @@ applySettingsButton.addEventListener("click", ()=>{
         }
         winsAmountText.innerText = winsAmount
         setTimeout(() => {
-            settingsDiv.classList.toggle("show")
+            settingsDiv.classList.remove("show")
         }, 200);
     }
 })
@@ -236,7 +236,6 @@ function los() {
                     if (buffer.join("") == "give") {
                         window.location.href = "https://bitly.com/98K8eH"
                     }else if (buffer.join("") == "Radziu") {
-                        window.location.href = "../"
                         sessionStorage.setItem("secret", "Radziu mode")
                     }
 
