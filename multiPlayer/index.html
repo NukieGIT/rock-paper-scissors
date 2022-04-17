@@ -34,6 +34,11 @@
         <p class="combo"><span id="combo">0</span>x</p>
         <p class="combo2"><span id="combo2">0</span>x</p>
     </div>
+    <div class="emulateButtons noSelect">
+        <button class="emulateR emulateButton">Rock</button>
+        <button class="emulateP emulateButton">Paper</button>
+        <button class="emulateS emulateButton">Scissors</button>
+    </div>
     <div class="restart hide noSelect">
         <h1 class="winnerText hide"></h1>
         <p class="highestComboText">player 1 Highest Combo: <span id="highestComboText"></span></p>
@@ -42,6 +47,11 @@
     </div>
     <div class="settings">
         <h2>Needed Wins: <input type="number" class="winsAmountUser userInput" min="0" max="9999"></h2>
+        <h2>Enable keyboard buttons emulation: 
+            <label class="switch">
+                <input type="checkbox" class="emulateButtonsCheckBox">
+                <span class="slider round"></span>
+            </label></h2>
         <button class="applySettings">Apply</button>
     </div>
     <div class="settingsIconContainer noSelect">
