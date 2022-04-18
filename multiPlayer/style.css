@@ -1,6 +1,6 @@
 :root{
     --applyButtonHeight: 10px;
-    --equalChancesButtonHeight: 5px;
+    --keyBindsButtonHeight: 5px;
 }
 *{
     font-family: 'Comfortaa', cursive;
@@ -10,6 +10,12 @@ body{
     background-color: darkslategray;
     overflow: hidden;
 }
+
+.preloader{
+    transition: none !important;
+    animation: none !important;
+}
+
 .container {
     display: grid;
     grid-template-columns: auto auto auto auto;
@@ -337,7 +343,7 @@ input:checked + .slider:before {
     margin-bottom: 10%;
     padding: var(--applyButtonHeight) calc(var(--applyButtonHeight) * 2) var(--applyButtonHeight) calc(var(--applyButtonHeight) * 2);
     background-color: rgb(0, 158, 0);
-    transition: .15s all ease-in-out;
+    transition: .15s transform ease-in-out, .15s border-color ease-in-out;
 }
 
 .applySettings:hover{
@@ -350,13 +356,142 @@ input:checked + .slider:before {
     border: 1px solid white;
 }
 
-@keyframes redPulse {
+
+.keyBinds{
+    position: relative;
+    outline: none;
+    border: 1px solid rgb(255, 132, 224);
+    color: white;
+    border-radius: 20px;
+    /* top: 5%;
+    bottom: 5%; */
+    margin-top: 5%;
+    margin-bottom: 10%;
+    padding: var(--keyBindsButtonHeight) calc(var(--keyBindsButtonHeight) * 2) var(--keyBindsButtonHeight) calc(var(--keyBindsButtonHeight) * 2);
+    background-color: rgb(111, 49, 255);
+    transition: .15s transform ease-in-out, .15s border-color ease-in-out;
+}
+
+.keyBinds:hover{
+    transform: scale(1.05) rotate(5deg);
+    perspective: 1px;
+    border-color: white;
+}
+
+.keyBindsEditorMenu{
+    color: white;
+    background-color: black;
+    padding: 30px;
+    max-width: 400px;
+    border-radius: 20px;
+    opacity: 0;
+}
+
+.keyBindsEditorMenu::backdrop{
+    background-color: rgba(0, 0, 0, .8);
+    opacity: 0;
+}
+
+.keyBindsEditorMenu[open]{
+    animation: slideUp .5s forwards ease-in-out, fadeIn .5s forwards ease-in-out;
+}
+
+.keyBindsEditorMenu[open]::backdrop{
+    animation: fadeIn .5s forwards ease-in-out;
+}
+
+.keyBindsEditorMenu[closing]{
+    display: block;
+    pointer-events: none;
+    inset: 0;
+    animation: slideDown .5s forwards ease-in-out, fadeOut .5s forwards ease-in-out;
+}
+
+.keyBindsEditorMenu[closing]::backdrop{
+    animation: fadeOut .5s forwards ease-in-out;
+}
+
+
+@keyframes slideUp {
     from{
-        color: white;
+        transform: translateY(70vh);
     }
     to{
-        color: red;
+        opacity: 1;
+        transform: translateY(0);
     }
+}
+@keyframes slideDown {
+    from{
+        transform: translateY(0);
+    }
+    to{
+        transform: translateY(70vh);
+    }
+}
+
+@keyframes fadeIn {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+@keyframes fadeOut {
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 0;
+    }
+}
+
+.keyBindsEditorMenu h1{
+    margin: 0 0 40px 0;
+}
+
+.applyKeyBindSettingsContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.applyKeyBindSettings{
+    position: relative;
+    outline: none;
+    border: 1px solid rgb(255, 132, 224);
+    color: white;
+    border-radius: 20px;
+    margin-top: 20px;
+    padding: var(--keyBindsButtonHeight) calc(var(--keyBindsButtonHeight) * 2) var(--keyBindsButtonHeight) calc(var(--keyBindsButtonHeight) * 2);
+    background-color: rgb(111, 49, 255);
+    transition: .15s transform ease-in-out, .15s border-color ease-in-out;
+}
+
+.applyKeyBindSettings:hover{
+    transform: scale(1.05) rotate(5deg);
+    perspective: 1px;
+    border-color: white;
+}
+
+.keyBindInputs{
+    display: grid;
+    gap: 10px;
+}
+
+.keyBindInputs input{
+    max-width: 10ch;
+    color: white;
+    border-radius: 5px;
+    background-color: rgb(139, 137, 137);
+    border: none;
+    float: right;
+    clear: both;
+    text-align: center;
+}
+
+.keyBindInputs label{
+    text-align: left;
 }
 
 .userInput{

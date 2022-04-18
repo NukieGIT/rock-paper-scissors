@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="preloader">
     <div class="container">
         <div class="backButton">
             <a href="../"><</a>
@@ -29,7 +29,7 @@
         </div>
     </div>
     <div class="button1 noSelect">
-        <button class="los" id="but1" onclick="los()">Start</button>
+        <button class="los" id="but1">Start</button>
         <p class="losResult" id="winner"></p>
         <p class="combo"><span id="combo">0</span>x</p>
         <p class="combo2"><span id="combo2">0</span>x</p>
@@ -45,13 +45,28 @@
         <p class="highestComboText2"> player 2 Highest Combo: <span id="highestComboText2"></span></p>
         <button id="restartButton">RESTART</button>
     </div>
+    <dialog class="keyBindsEditorMenu">
+        <h1>Keybinds Editor</h1>
+        <div class="keyBindInputs">
+            <label for="">Player 1 Rock<input type="text" name="" maxlength="1" class="keyBindInputsLabels" id="p1Rock"></label>
+            <label for="">Player 2 Rock<input type="text" name="" maxlength="1" class="keyBindInputsLabels" id="p2Rock"></label>
+            <label for="">Player 1 Paper<input type="text" name="" maxlength="1" class="keyBindInputsLabels" id="p1Paper"></label>
+            <label for="">Player 2 Paper<input type="text" name="" maxlength="1" class="keyBindInputsLabels" id="p2Paper"></label>
+            <label for="">Player 1 Scissors<input type="text" name="" maxlength="1" class="keyBindInputsLabels" id="p1Scissors"></label>
+            <label for="">Player 2 Scissors<input type="text" name="" maxlength="1" class="keyBindInputsLabels" id="p2Scissors"></label>
+        </div>
+        <div class="applyKeyBindSettingsContainer">
+            <button class="applyKeyBindSettings">Apply</button>
+        </div>
+    </dialog>
     <div class="settings">
-        <h2>Needed Wins: <input type="number" class="winsAmountUser userInput" min="0" max="9999"></h2>
+        <h2>Needed Wins: <input type="number" class="winsAmountUser userInput" min="0" maxlength="9999"></h2>
         <h2>Enable keyboard buttons emulation: 
             <label class="switch">
                 <input type="checkbox" class="emulateButtonsCheckBox">
                 <span class="slider round"></span>
             </label></h2>
+        <button class="keyBinds">Keybinds editor</button>
         <button class="applySettings">Apply</button>
     </div>
     <div class="settingsIconContainer noSelect">
