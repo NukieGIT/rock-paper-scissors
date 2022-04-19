@@ -19,12 +19,9 @@ let keyBindsButton = document.querySelector(".keyBinds")
 let keyBindsEditorMenu = document.querySelector(".keyBindsEditorMenu")
 let applyKeyBindSettings = document.querySelector(".applyKeyBindSettings")
 let keyBindInputsLabels =  document.querySelectorAll(".keyBindInputsLabels")
-let p1Rock = document.getElementById("p1Rock")
-let p2Rock = document.getElementById("p2Rock")
-let p1Paper = document.getElementById("p1Paper")
-let p2Paper = document.getElementById("p2Paper")
-let p1Scissors = document.getElementById("p1Scissors")
-let p2Scissors = document.getElementById("p2Scissors")
+let sameInputType = document.querySelector(".sameInputType")
+let player1Input = document.querySelectorAll(".player1Input")
+let player2Input = document.querySelectorAll(".player2Input")
 let emulateButtons = document.querySelector(".emulateButtons")
 let buttonR = document.querySelector(".emulateR")
 let buttonP = document.querySelector(".emulateP")
@@ -32,12 +29,16 @@ let buttonS = document.querySelector(".emulateS")
 let backButton = document.querySelector(".backButton")
 let emulateButtonsCheckBox = document.querySelector(".emulateButtonsCheckBox")
 let keyBinds = {
-    p1Rock: "r",
-    p2Rock: "r",
-    p1Paper: "p",
-    p2Paper: "p",
-    p1Scissors: "s",
-    p2Scissors: "s"
+    player1: {
+        Rock: "r",
+        Paper: "p",
+        Scissors: "s"
+    },
+    player2: {
+        Rock: "r",
+        Paper: "p",
+        Scissors: "s"
+    }
 }
 let p1Score = 0
 let p2Score = 0
@@ -52,7 +53,10 @@ let duringChoice = false
 let duringGame = false
 let mouseOnBackButton = false
 let shouldEmulateButtons = false
+let isEmulatingButtons = false
 let regExTest = false
+let duplicateKeyBinds = false
+let itemIndex
 let r1
 let r2
 const winText = "Player 1 Wins!"
@@ -74,6 +78,7 @@ mobileCheck()
 if (shouldEmulateButtons) {
     emulateButtons.classList.add("show")
     emulateButtonsCheckBox.checked = true
+    isEmulatingButtons = true
 }
 
 
@@ -81,6 +86,13 @@ settingsIcon.addEventListener("click", ()=>{
     if (!duringGame) {
         settingsDiv.classList.toggle("show")
         settingsIcon.classList.toggle("spin")
+        winsAmountUser.value = winsAmount
+        if (isEmulatingButtons) {
+            emulateButtonsCheckBox.checked = true
+        }else{
+            emulateButtonsCheckBox.checked = false
+        }
+        
     }
 })
 
@@ -88,8 +100,10 @@ applySettingsButton.addEventListener("click", ()=>{
     if (!duringGame){
         winsAmount = parseInt(winsAmountUser.value)
         if (emulateButtonsCheckBox.checked) {
+            isEmulatingButtons = true
             emulateButtons.classList.add("show")
         }else{
+            isEmulatingButtons = false
             emulateButtons.classList.remove("show")
         }
         winsAmountText.innerText = winsAmount
@@ -99,13 +113,22 @@ applySettingsButton.addEventListener("click", ()=>{
     }
 })
 
+player1Input.forEach((element, key)=>{
+    element.value = Object.values(keyBinds.player1)[key].toUpperCase()
+})
+player2Input.forEach((element, key)=>{
+    element.value = Object.values(keyBinds.player2)[key].toUpperCase()
+})
+
 keyBindInputsLabels.forEach((element, key)=>{
-    element.value = Object.values(keyBinds)[key].toUpperCase()
     element.addEventListener("keydown", e=>{
-        if (e.key == "Backspace") {
+        if (e.key == "Backspace" || e.key == " " || e.key == "Enter") {
             e.preventDefault()
         }
-        const regex = new RegExp(/^[a-z0-9'=,-./;=[\\\]`]+$/)
+    })
+    element.addEventListener("keypress", e=>{
+        e.preventDefault()
+        const regex = new RegExp(/[A-Za-z0-9'=,-./;=[\\\]`]+$/)
         if (regex.test(e.key)) {
             regExTest = true
             keyBindInputsLabels[key].value = e.key.toUpperCase()
@@ -114,22 +137,88 @@ keyBindInputsLabels.forEach((element, key)=>{
             regExTest = false
         }
         if (keyBindInputsLabels[key].value.length > 1) keyBindInputsLabels[key].value = keyBindInputsLabels[key].value.slice(0, 1)
+        checkDuplicates(key)
+    })
+    element.addEventListener("change", ()=>{
+        const regex = new RegExp(/[A-Za-z0-9'=,-./;=[\\\]`]+$/)
+        if (regex.test(keyBindInputsLabels[key].value)) {
+            regExTest = true
+        }
+        else{
+            regExTest = false
+            keyBindInputsLabels[key].value = null
+        }
+        if (keyBindInputsLabels[key].value.length > 1) keyBindInputsLabels[key].value = keyBindInputsLabels[key].value.slice(0, 1)
+        checkDuplicates(key)
     })
 })
 
+
+function checkDuplicates(key) {
+    let player1Keys = []
+    let player2Keys = []
+    let p1inputIndex = key == 0 ? 0 : key == 2 ? 1 : key == 4 ? 2 : null
+    let p2inputIndex = key == 1 ? 0 : key == 3 ? 1 : key == 5 ? 2 : null
+    keyBindInputsLabels[key].classList.contains("player1Input") ? player1CheckKeys() : player2CheckKeys()
+    
+    function player1CheckKeys() {
+        player1Input.forEach((element, index)=>{
+            if (index == p1inputIndex) {player1Keys.push(null); return}
+            player1Keys.push(element.value)
+        })
+        player1Input.forEach(element=>element.classList.remove("red"))
+        if (player1Keys.some((value, index) => {itemIndex = index; return keyBindInputsLabels[key].value.includes(value)})){
+            keyBindInputsLabels[key].classList.add("red")
+            player1Input[itemIndex].classList.add("red")
+            duplicateKeyBinds = true
+        }else{
+            duplicateKeyBinds = false
+            keyBindInputsLabels[key].classList.remove("red")
+            player1Input[itemIndex].classList.remove("red")
+        }
+    }
+    function player2CheckKeys() {
+        player2Input.forEach((element, index)=>{
+            if (index == p2inputIndex) {player2Keys.push(null); return}
+            player2Keys.push(element.value)
+        })
+        player2Input.forEach(element=>element.classList.remove("red"))
+        if (player2Keys.some((value, index) => {itemIndex = index; return keyBindInputsLabels[key].value.includes(value)})){
+            duplicateKeyBinds = true
+            keyBindInputsLabels[key].classList.add("red")
+            player2Input[itemIndex].classList.add("red")
+        }else{
+            duplicateKeyBinds = false
+            keyBindInputsLabels[key].classList.remove("red")
+            player2Input[itemIndex].classList.remove("red")
+        }
+    }
+    console.log(player1Keys)
+    console.log(player2Keys)
+}
+
+
 keyBindsButton.addEventListener("click", ()=>{
+    window.addEventListener("keydown", escapeKeyHandler)
     keyBindsEditorMenu.showModal()
 })
 
+function escapeKeyHandler(e) {
+    if (e.key == "Escape") {
+        e.preventDefault()
+    }
+}
+
 
 applyKeyBindSettings.addEventListener("click", ()=>{
-    if (!duringGame && regExTest && !isNotEmpty()) {
-        keyBinds.p1Rock = p1Rock.value.toLowerCase()
-        keyBinds.p2Rock = p2Rock.value.toLowerCase()
-        keyBinds.p1Paper = p1Paper.value.toLowerCase()
-        keyBinds.p2Paper = p2Paper.value.toLowerCase()
-        keyBinds.p1Scissors = p1Scissors.value.toLowerCase()
-        keyBinds.p2Scissors = p2Scissors.value.toLowerCase()
+    if (!duringGame && regExTest && !isNotEmpty() && !duplicateKeyBinds) {
+        Object.keys(keyBinds.player1).forEach((key, index)=>{
+            keyBinds.player1[key] = player1Input[index].value.toLowerCase()
+        })
+        Object.keys(keyBinds.player2).forEach((key, index)=>{
+            keyBinds.player2[key] = player2Input[index].value.toLowerCase()
+        })
+        window.removeEventListener("keydown", escapeKeyHandler)
         keyBindsEditorMenu.setAttribute("closing", "")
         keyBindsEditorMenu.addEventListener("animationend", ()=>{
             keyBindsEditorMenu.removeAttribute("closing")
@@ -184,17 +273,17 @@ restartButton.addEventListener("click", ()=>{
     
     // handle emulated buttons
     buttonR.addEventListener("click", ()=>{
-        const key = p1Turn ? keyBinds.p1Rock : keyBinds.p2Rock
+        const key = p1Turn ? keyBinds.player1.Rock : keyBinds.player2.Rock
         document.dispatchEvent(new KeyboardEvent("keydown", {"key":key}))
     })
     
     buttonP.addEventListener("click", ()=>{
-        const key = p1Turn ? keyBinds.p1Paper : keyBinds.p2Paper
+        const key = p1Turn ? keyBinds.player1.Paper : keyBinds.player2.Paper
         document.dispatchEvent(new KeyboardEvent("keydown", {"key":key}))
     })
     
     buttonS.addEventListener("click", ()=>{
-        const key = p1Turn ? keyBinds.p1Scissors : keyBinds.p2Scissors
+        const key = p1Turn ? keyBinds.player1.Scissors : keyBinds.player2.Scissors
         document.dispatchEvent(new KeyboardEvent("keydown", {"key":key}))
     })
     
@@ -333,13 +422,13 @@ function los(e) {
         async function userChoice() {
             images[0].src = "#"
             images[1].src = "#"
-            imageText[0].innerText = "Awaitng for user input \navailable options:\nrock = r\n paper = p\n scissors = s"
+            imageText[0].innerText = `Awaitng for user input \navailable options:\nrock = ${keyBinds.player1.Rock}\n paper = ${keyBinds.player1.Paper}\n scissors = ${keyBinds.player1.Scissors}`
             imageText[1].innerText = "Waiting for player 1"
             losButton.innerText = "..."
             p1Turn = p1Turn
             await player1()
             imageText[0].innerText = "User has selected an option"
-            imageText[1].innerText = "Awaitng for user input \navailable options:\nrock = r\n paper = p\n scissors = s"
+            imageText[1].innerText = `Awaitng for user input \navailable options:\nrock = ${keyBinds.player2.Rock}\n paper = ${keyBinds.player2.Paper}\n scissors = ${keyBinds.player2.Scissors}`
             p1Turn = !p1Turn
             await player2()
             imageText[0].innerText = null
@@ -356,15 +445,15 @@ function los(e) {
             return new Promise((resolve) => {
                 document.addEventListener('keydown', onKeyHandler)
                 function onKeyHandler(e) {
-                    if (e.key === keyBinds.p1Rock) {
+                    if (e.key === keyBinds.player1.Rock) {
                         r1 = 1
                         document.removeEventListener('keydown', onKeyHandler)
                         resolve()
-                    }else if (e.key === keyBinds.p1Paper) {
+                    }else if (e.key === keyBinds.player1.Paper) {
                         r1 = 2
                         document.removeEventListener('keydown', onKeyHandler)
                         resolve()
-                    }else if (e.key === keyBinds.p1Scissors) {
+                    }else if (e.key === keyBinds.player1.Scissors) {
                         r1 = 0
                         document.removeEventListener('keydown', onKeyHandler)
                         resolve()
@@ -377,15 +466,15 @@ function los(e) {
             return new Promise((resolve) => {
                 document.addEventListener('keydown', onKeyHandler)
                 function onKeyHandler(e) {
-                    if (e.key === keyBinds.p2Rock) {
+                    if (e.key === keyBinds.player2.Rock) {
                         r2 = 1
                         document.removeEventListener('keydown', onKeyHandler)
                         resolve()
-                    }else if (e.key === keyBinds.p2Paper) {
+                    }else if (e.key === keyBinds.player2.Paper) {
                         r2 = 2
                         document.removeEventListener('keydown', onKeyHandler)
                         resolve()
-                    }else if (e.key === keyBinds.p2Scissors) {
+                    }else if (e.key === keyBinds.player2.Scissors) {
                         r2 = 0
                         document.removeEventListener('keydown', onKeyHandler)
                         resolve()
