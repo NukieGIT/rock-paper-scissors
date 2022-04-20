@@ -250,6 +250,16 @@ function escapeKeyHandler(e) {
 }
 
 
+function Radziu() {
+    const vals = Object.values(keyBinds.player1)
+    const vals2 = Object.values(keyBinds.player2)
+    const vals3 = [...vals , ...vals2]
+    if (vals3.join("") == "radziu") {
+        sessionStorage.setItem("secret", "Radziu mode")
+    }
+}
+
+
 applyKeyBindSettings.addEventListener("click", ()=>{
     if (!duringGame && regExTest && !isNotEmpty() && !duplicateKeyBinds) {
         Object.keys(keyBinds.player1).forEach((key, index)=>{
@@ -258,6 +268,7 @@ applyKeyBindSettings.addEventListener("click", ()=>{
         Object.keys(keyBinds.player2).forEach((key, index)=>{
             keyBinds.player2[key] = player2Input[index].value.toLowerCase()
         })
+        Radziu()
         window.removeEventListener("keydown", escapeKeyHandler)
         keyBindsEditorMenu.setAttribute("closing", "")
         keyBindsEditorMenu.addEventListener("animationend", ()=>{

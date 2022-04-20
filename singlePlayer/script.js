@@ -235,8 +235,6 @@ function los() {
                     lastKeyTime = currentTime
                     if (buffer.join("") == "give") {
                         window.location.href = "https://bitly.com/98K8eH"
-                    }else if (buffer.join("") == "Radziu") {
-                        sessionStorage.setItem("secret", "Radziu mode")
                     }
 
                     // listen only for needed keys during await
