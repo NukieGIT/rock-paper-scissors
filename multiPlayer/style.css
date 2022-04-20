@@ -489,8 +489,9 @@ input:checked + .slider:before {
     text-align: center;
 }
 
-.keyBindInputsLabels.red{
+.red{
     color: red !important;
+    background-color: rgba(255, 0, 0, 0.185) !important;
 }
 
 .keyBindInputs label{
