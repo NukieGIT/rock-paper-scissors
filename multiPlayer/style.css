@@ -5,6 +5,7 @@
 *{
     font-family: 'Comfortaa', cursive;
 }
+
 body{
     margin: 0;
     background-color: darkslategray;
@@ -28,7 +29,7 @@ body{
     justify-items: center;
 }
   
-  .result { grid-area: result; text-align: center; width: 100vw;}
+  .result { grid-area: result; text-align: center;}
   
   .player { grid-area: player; width: 200px;}
   
@@ -240,6 +241,7 @@ body{
     right: 75vw;
     padding: 0px 50px 0px 50px;
     transform: translateX(-20vw);
+    pointer-events: none;
     transition: all 1s ease-in-out;
 }
 
@@ -326,6 +328,7 @@ input:checked + .slider:before {
 
 .settings.show{
     opacity: 1;
+    pointer-events: all;
     border-radius: 20px 0px 0px 20px;
     transform: translateX(75vw);
 
