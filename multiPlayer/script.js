@@ -348,15 +348,16 @@ function winnerCheck() {
 
         if (r1 === r2) {
             winner.innerText = tieText
-            count = count2 = 0
             if (highestCombo<count) {
                 highestCombo = count
             }
             if (highestCombo2<count2) {
                 highestCombo2 = count2
             }
+            count = count2 = 0
             lastMove = tieText
             duringChoice = false
+            updateScore()
 
             return
         }
@@ -364,6 +365,7 @@ function winnerCheck() {
         if (r1 === 1) {
             if (r2 === 0) {
                 winner.innerText = winText
+                lastMove = winText
                 count2 = 0
                 if (lastMove == winText) {
                     count++
@@ -373,10 +375,10 @@ function winnerCheck() {
                 if (highestCombo<count) {
                     highestCombo = count
                 }
-                lastMove = winText
                 p1Score++
             } else{
                 winner.innerText = winText2
+                lastMove = winText2
                 count = 0
                 if (lastMove == winText2) {
                     count2++
@@ -386,15 +388,15 @@ function winnerCheck() {
                 if (highestCombo2<count2) {
                     highestCombo2 = count2
                 }
-                lastMove = winText2
                 p2Score++
             }
         }
         //paper
         else if (r1 === 2) {
             if (r2 === 1) {
-                count2 = 0
                 winner.innerText = winText
+                lastMove = winText
+                count2 = 0
                 if (lastMove == winText) {
                     count++
                 }else{
@@ -403,10 +405,10 @@ function winnerCheck() {
                 if (highestCombo<count) {
                     highestCombo = count
                 }
-                lastMove = winText
                 p1Score++
             } else{
                 winner.innerText = winText2
+                lastMove = winText2
                 count = 0
                 if (lastMove == winText2) {
                     count2++
@@ -416,7 +418,6 @@ function winnerCheck() {
                 if (highestCombo2<count2) {
                     highestCombo2 = count2
                 }
-                lastMove = winText2
                 p2Score++
             }
         }
@@ -424,6 +425,7 @@ function winnerCheck() {
         else if (r1 === 0) {
             if (r2 === 2) {
                 winner.innerText = winText
+                lastMove = winText
                 count2 = 0
                 if (lastMove == winText) {
                     count++
@@ -433,10 +435,10 @@ function winnerCheck() {
                 if (highestCombo<count) {
                     highestCombo = count
                 }
-                lastMove = winText
                 p1Score++
             } else{
                 winner.innerText = winText2
+                lastMove = winText2
                 count = 0
                 if (lastMove == winText2) {
                     count2++
@@ -446,7 +448,6 @@ function winnerCheck() {
                 if (highestCombo2<count2) {
                     highestCombo2 = count2
                 }
-                lastMove = winText2
                 p2Score++
             }
         }

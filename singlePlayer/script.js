@@ -282,12 +282,13 @@ function los() {
 
                         if (r1 === r2) {
                             winner.innerText = tieText
-                            count = 0
                             if (highestCombo<count) {
                                 highestCombo = count
                             }
+                            count = 0
                             lastMove = tieText
                             duringChoice = false
+                            updateScore()
 
                             return
                         }
@@ -295,6 +296,7 @@ function los() {
                         if (r1 === 1) {
                             if (r2 === 0) {
                                 winner.innerText = winText
+                                lastMove = winText
                                 if (lastMove == winText) {
                                     count++
                                 }else{
@@ -303,7 +305,6 @@ function los() {
                                 if (highestCombo<count) {
                                     highestCombo = count
                                 }
-                                lastMove = winText
                                 pScore++
                             } else{
                                 winner.innerText = loseText
@@ -319,6 +320,7 @@ function los() {
                         else if (r1 === 2) {
                             if (r2 === 1) {
                                 winner.innerText = winText
+                                lastMove = winText
                                 if (lastMove == winText) {
                                     count++
                                 }else{
@@ -327,7 +329,6 @@ function los() {
                                 if (highestCombo<count) {
                                     highestCombo = count
                                 }
-                                lastMove = winText
                                 pScore++
                             } else{
                                 winner.innerText = loseText
@@ -343,6 +344,7 @@ function los() {
                         else if (r1 === 0) {
                             if (r2 === 2) {
                                 winner.innerText = winText
+                                lastMove = winText
                                 if (lastMove == winText) {
                                     count++
                                 }else{
@@ -351,7 +353,6 @@ function los() {
                                 if (highestCombo<count) {
                                     highestCombo = count
                                 }
-                                lastMove = winText
                                 pScore++
                             } else{
                                 winner.innerText = loseText
