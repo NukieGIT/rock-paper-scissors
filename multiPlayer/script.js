@@ -18,6 +18,7 @@ let applySettingsButton = document.querySelector(".applySettings")
 let keyBindsButton = document.querySelector(".keyBinds")
 let keyBindsEditorMenu = document.querySelector(".keyBindsEditorMenu")
 let applyKeyBindSettings = document.querySelector(".applyKeyBindSettings")
+let discardSettingsButton = document.querySelector(".discardKeyBindSettings")
 let keyBindInputsLabels =  document.querySelectorAll(".keyBindInputsLabels")
 let sameInputType = document.querySelector(".sameInputType")
 let player1Input = document.querySelectorAll(".player1Input")
@@ -246,6 +247,19 @@ keyBindsButton.addEventListener("click", ()=>{
 function escapeKeyHandler(e) {
     if (e.key == "Escape") {
         e.preventDefault()
+        player1Input.forEach((element, key)=>{
+            element.value = Object.values(keyBinds.player1)[key].toUpperCase()
+        })
+        player2Input.forEach((element, key)=>{
+            element.value = Object.values(keyBinds.player2)[key].toUpperCase()
+        })
+        checkDuplicatesv2()
+        window.removeEventListener("keydown", escapeKeyHandler)
+        keyBindsEditorMenu.setAttribute("closing", "")
+        keyBindsEditorMenu.addEventListener("animationend", ()=>{
+            keyBindsEditorMenu.removeAttribute("closing")
+            keyBindsEditorMenu.close()
+        }, {once: true} )
     }
 }
 
@@ -276,6 +290,22 @@ applyKeyBindSettings.addEventListener("click", ()=>{
             keyBindsEditorMenu.close()
         }, {once: true} )
     }
+})
+
+discardSettingsButton.addEventListener("click", ()=>{
+    player1Input.forEach((element, key)=>{
+        element.value = Object.values(keyBinds.player1)[key].toUpperCase()
+    })
+    player2Input.forEach((element, key)=>{
+        element.value = Object.values(keyBinds.player2)[key].toUpperCase()
+    })
+    checkDuplicatesv2()
+    window.removeEventListener("keydown", escapeKeyHandler)
+    keyBindsEditorMenu.setAttribute("closing", "")
+    keyBindsEditorMenu.addEventListener("animationend", ()=>{
+        keyBindsEditorMenu.removeAttribute("closing")
+        keyBindsEditorMenu.close()
+    }, {once: true} )
 })
 
 function isNotEmpty() {

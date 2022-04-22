@@ -453,9 +453,9 @@ input:checked + .slider:before {
     margin: 0 0 40px 0;
 }
 
-.applyKeyBindSettingsContainer{
+.buttonsKeyBindSettingsContainer{
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
 .applyKeyBindSettings{
@@ -474,6 +474,33 @@ input:checked + .slider:before {
     transform: scale(1.05) rotate(5deg);
     perspective: 1px;
     border-color: white;
+}
+
+.discardKeyBindSettings{
+    position: relative;
+    outline: none;
+    border: 1px solid rgb(255, 132, 224);
+    color: white;
+    border-radius: 20px;
+    margin-top: 20px;
+    padding: var(--keyBindsButtonHeight) calc(var(--keyBindsButtonHeight) * 2) var(--keyBindsButtonHeight) calc(var(--keyBindsButtonHeight) * 2);
+    background-color: rgb(255, 49, 66);
+    transition: .15s transform ease-in-out, .15s border-color ease-in-out; 
+}
+
+.discardKeyBindSettings:hover{
+    transform: scale(1.05) rotate(5deg);
+    perspective: 1px;
+    border-color: white;
+}
+
+.invisibleContainer{
+    position: relative;
+    width: 20%;
+    height: 100%;
+    margin-top: 20px;
+    padding: var(--keyBindsButtonHeight) calc(var(--keyBindsButtonHeight) * 2) var(--keyBindsButtonHeight) calc(var(--keyBindsButtonHeight) * 2);
+
 }
 
 .keyBindInputs{
