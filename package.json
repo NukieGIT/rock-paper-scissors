@@ -1,0 +1,17 @@
+{
+  "name": "rock-paper-scissors",
+  "version": "1.0.0",
+  "description": "Just a little project i am working on",
+  "main": "index.js",
+  "scripts": {
+    "devStart": "nodemon ./onlineMultiPlayer/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "socket.io": "^4.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
