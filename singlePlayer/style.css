@@ -404,6 +404,20 @@ input:checked + .slider:before {
     height: auto;
 }
 
+.overlay{
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.overlay.show{
+    background-color: rgba(60, 0, 116, 0.938);
+    mix-blend-mode: hue;
+}
+
 .noSelect{
     -webkit-touch-callout: none; /* iOS Safari */
       -webkit-user-select: none; /* Safari */

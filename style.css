@@ -1,5 +1,5 @@
 *{
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Comfortaa';
 }
 body{
     margin: 0;
@@ -62,19 +62,41 @@ body{
 }
 
 .Radziu{
+    border: 7px solid transparent;
     grid-area: Radziu;
-    background-color: black;
-    color: white !important;
-    border-color: white;
+    background-image: linear-gradient(#1F1926, #1F1926), 
+    linear-gradient(var(--angle), #645176, #624b7a, #60447f, #5e3d83, #5b3687, #552f82, #4f277d, #492078, #3f176a, #350f5c, #2b064e, #210041);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    background-color: #1F1926;
+    color: #BBA1D4 !important;
+    animation: 2.5s rotate linear infinite;
+    transition: filter 1s ease-in-out;
+}
+
+.Radziu:hover, .Radziu:hover *{
+    filter: grayscale(1) contrast(1.2);
+    font-size: 141%;
+    font-family: Tangerine;
+}
+
+
+@property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes rotate {
+    to {
+      --angle: 360deg;
+    }
 }
 
 .singlePlayer:hover, .multiPlayer:hover{
     filter: brightness(.5);
 }
 
-.Radziu:hover{
-    filter: invert(1);
-}
 
 .footer{
     grid-area: footer;
@@ -93,6 +115,20 @@ body{
 }
 .footer a:hover{
     color: rgb(133, 206, 206);
+}
+
+.overlay{
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.overlay.show{
+    background-color: rgba(60, 0, 116, 0.938);
+    mix-blend-mode: hue;
 }
 
 .noSelect{
