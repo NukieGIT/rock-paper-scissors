@@ -18,7 +18,7 @@ There's a lot of stuff to fix, especially the css... but well, i will do that so
 | 1 | Finish basic settings menu |    ✔   |
 | 2 | Make a 2 player mode       |    ✔   |
 | 3 | Make a mode selection menu |    ✔   |
-| 4 | Fix css styling            |    ❌  |
+| 4 | Fix css styling            |    never lmao  |
 
 
 # The best Q&A ever
